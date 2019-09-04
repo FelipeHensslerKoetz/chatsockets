@@ -10,7 +10,8 @@ public class ServidorSocket {
 			servidor = new ServerSocket(9999);
 			System.out.println("Servidor inicializado com sucesso!");
 			while (true) {
-				Socket socket = servidor.accept();
+				Socket cliente = servidor.accept();
+				new GerenciadorDeClientes(cliente);
 			}
 		} catch (IOException e) {
 			try {
@@ -18,7 +19,7 @@ public class ServidorSocket {
 					servidor.close();
 				}
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+				System.out.println("Nao foi possivel finalizar o servidor!");
 				e1.printStackTrace();
 			}
 			System.err.println("Porta ocupada ou servidor foi finalizado!");
